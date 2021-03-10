@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-Suite">
+              <span class="suite-name border-passed">Suite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-Suite">
+                    <span>C:\Users\Mahesh N\eclipse-workspace\ecommreplatform\testng.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-Suite">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-Suite">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-Suite">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-Suite">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-Suite">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-Suite">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">10 methods,   10 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Suite" class="hide-methods passed suite-Suite"> (hide)</a> <!-- hide-methods passed suite-Suite -->
+                      <a href="#" panel-name="suite-Suite" class="show-methods passed suite-Suite"> (show)</a> <!-- show-methods passed suite-Suite -->
+                    </span>
+                    <div class="method-list-content passed suite-Suite">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ecomm.apitests.CreateOrderFlow" hash-for-method="TC_001_getAccessToken">TC_001_getAccessToken</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ecomm.apitests.CreateOrderFlow" hash-for-method="TC_002_getProductDetails">TC_002_getProductDetails</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ecomm.apitests.CreateOrderFlow" hash-for-method="TC_003_CreateCart">TC_003_CreateCart</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ecomm.apitests.CreateOrderFlow" hash-for-method="TC_004_AddLineItemToCart">TC_004_AddLineItemToCart</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ecomm.apitests.CreateOrderFlow" hash-for-method="TC_005_AddDiscountToCart">TC_005_AddDiscountToCart</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ecomm.apitests.CreateOrderFlow" hash-for-method="TC_006_SetShippingAddress">TC_006_SetShippingAddress</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ecomm.apitests.CreateOrderFlow" hash-for-method="TC_007_SetBillingAddress">TC_007_SetBillingAddress</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ecomm.apitests.CreateOrderFlow" hash-for-method="TC_008_SetShippingMethod">TC_008_SetShippingMethod</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ecomm.apitests.CreateOrderFlow" hash-for-method="TC_009_CreateAnOrder">TC_009_CreateAnOrder</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="ecomm.apitests.CreateOrderFlow" hash-for-method="TC_010_GetAnOrder">TC_010_GetAnOrder</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Suite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Suite" class="panel Suite">
+          <div class="suite-Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">ecomm.apitests.CreateOrderFlow</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_001_getAccessToken">
+                  </a> <!-- TC_001_getAccessToken -->
+                  <span class="method-name">TC_001_getAccessToken</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_002_getProductDetails">
+                  </a> <!-- TC_002_getProductDetails -->
+                  <span class="method-name">TC_002_getProductDetails</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_003_CreateCart">
+                  </a> <!-- TC_003_CreateCart -->
+                  <span class="method-name">TC_003_CreateCart</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_004_AddLineItemToCart">
+                  </a> <!-- TC_004_AddLineItemToCart -->
+                  <span class="method-name">TC_004_AddLineItemToCart</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_005_AddDiscountToCart">
+                  </a> <!-- TC_005_AddDiscountToCart -->
+                  <span class="method-name">TC_005_AddDiscountToCart</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_006_SetShippingAddress">
+                  </a> <!-- TC_006_SetShippingAddress -->
+                  <span class="method-name">TC_006_SetShippingAddress</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_007_SetBillingAddress">
+                  </a> <!-- TC_007_SetBillingAddress -->
+                  <span class="method-name">TC_007_SetBillingAddress</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_008_SetShippingMethod">
+                  </a> <!-- TC_008_SetShippingMethod -->
+                  <span class="method-name">TC_008_SetShippingMethod</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_009_CreateAnOrder">
+                  </a> <!-- TC_009_CreateAnOrder -->
+                  <span class="method-name">TC_009_CreateAnOrder</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_010_GetAnOrder">
+                  </a> <!-- TC_010_GetAnOrder -->
+                  <span class="method-name">TC_010_GetAnOrder</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Suite-class-passed -->
+        </div> <!-- panel Suite -->
+        <div panel-name="test-xml-Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">C:\Users\Mahesh N\eclipse-workspace\ecommreplatform\testng.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Suite&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Test&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;ecomm.apitests.CreateOrderFlow&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Test --&gt;
+&lt;/suite&gt; &lt;!-- Suite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Test (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Suite');
+function tableData_Suite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(10);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'TC_001_getAccessToken')
+data.setCell(0, 2, 'ecomm.apitests.CreateOrderFlow')
+data.setCell(0, 3, 3140);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'TC_003_CreateCart')
+data.setCell(1, 2, 'ecomm.apitests.CreateOrderFlow')
+data.setCell(1, 3, 750);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'TC_009_CreateAnOrder')
+data.setCell(2, 2, 'ecomm.apitests.CreateOrderFlow')
+data.setCell(2, 3, 439);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'TC_005_AddDiscountToCart')
+data.setCell(3, 2, 'ecomm.apitests.CreateOrderFlow')
+data.setCell(3, 3, 438);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'TC_004_AddLineItemToCart')
+data.setCell(4, 2, 'ecomm.apitests.CreateOrderFlow')
+data.setCell(4, 3, 429);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'TC_002_getProductDetails')
+data.setCell(5, 2, 'ecomm.apitests.CreateOrderFlow')
+data.setCell(5, 3, 395);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'TC_007_SetBillingAddress')
+data.setCell(6, 2, 'ecomm.apitests.CreateOrderFlow')
+data.setCell(6, 3, 331);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'TC_006_SetShippingAddress')
+data.setCell(7, 2, 'ecomm.apitests.CreateOrderFlow')
+data.setCell(7, 3, 318);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'TC_008_SetShippingMethod')
+data.setCell(8, 2, 'ecomm.apitests.CreateOrderFlow')
+data.setCell(8, 3, 314);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'TC_010_GetAnOrder')
+data.setCell(9, 2, 'ecomm.apitests.CreateOrderFlow')
+data.setCell(9, 3, 284);
+window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 6 seconds</span>
+              <div id="times-div-Suite">
+              </div> <!-- times-div-Suite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">ecomm.apitests.CreateOrderFlow</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
+                <span class="method-name">initBaseConfig</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-suite before -->
+              <div class="test-method">
+                <span class="method-name">TC_001_getAccessToken</span>
+                <span class="method-start">206 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">teardown([TestResult name=TC_001_getAccessToken status=SUCCESS method=CreateOrderFlow.TC_001_getAccessToken()...)</span>
+                <span class="method-start">3347 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">TC_002_getProductDetails</span>
+                <span class="method-start">3626 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">teardown([TestResult name=TC_002_getProductDetails status=SUCCESS method=CreateOrderFlow.TC_002_getProductDet...)</span>
+                <span class="method-start">4023 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">TC_003_CreateCart</span>
+                <span class="method-start">4067 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">teardown([TestResult name=TC_003_CreateCart status=SUCCESS method=CreateOrderFlow.TC_003_CreateCart()[pri:3, ...)</span>
+                <span class="method-start">4818 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">TC_004_AddLineItemToCart</span>
+                <span class="method-start">4859 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">teardown([TestResult name=TC_004_AddLineItemToCart status=SUCCESS method=CreateOrderFlow.TC_004_AddLineItemTo...)</span>
+                <span class="method-start">5289 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">TC_005_AddDiscountToCart</span>
+                <span class="method-start">5322 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">teardown([TestResult name=TC_005_AddDiscountToCart status=SUCCESS method=CreateOrderFlow.TC_005_AddDiscountTo...)</span>
+                <span class="method-start">5761 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">TC_006_SetShippingAddress</span>
+                <span class="method-start">5803 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">teardown([TestResult name=TC_006_SetShippingAddress status=SUCCESS method=CreateOrderFlow.TC_006_SetShippingA...)</span>
+                <span class="method-start">6122 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">TC_007_SetBillingAddress</span>
+                <span class="method-start">6190 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">teardown([TestResult name=TC_007_SetBillingAddress status=SUCCESS method=CreateOrderFlow.TC_007_SetBillingAdd...)</span>
+                <span class="method-start">6523 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">TC_008_SetShippingMethod</span>
+                <span class="method-start">6588 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">teardown([TestResult name=TC_008_SetShippingMethod status=SUCCESS method=CreateOrderFlow.TC_008_SetShippingMe...)</span>
+                <span class="method-start">6904 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">TC_009_CreateAnOrder</span>
+                <span class="method-start">6951 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">teardown([TestResult name=TC_009_CreateAnOrder status=SUCCESS method=CreateOrderFlow.TC_009_CreateAnOrder()[p...)</span>
+                <span class="method-start">7391 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">TC_010_GetAnOrder</span>
+                <span class="method-start">7436 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">teardown([TestResult name=TC_010_GetAnOrder status=SUCCESS method=CreateOrderFlow.TC_010_GetAnOrder()[pri:10,...)</span>
+                <span class="method-start">7721 ms</span>
+              </div> <!-- configuration-method after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

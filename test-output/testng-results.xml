@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="10" passed="10">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="7562" started-at="2021-03-10T07:32:59Z" finished-at="2021-03-10T07:33:07Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="7562" started-at="2021-03-10T07:32:59Z" finished-at="2021-03-10T07:33:07Z">
+      <class name="ecomm.apitests.CreateOrderFlow">
+        <test-method status="PASS" signature="initBaseConfig()[pri:0, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="initBaseConfig" is-config="true" duration-ms="190" started-at="2021-03-10T07:32:59Z" finished-at="2021-03-10T07:32:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initBaseConfig -->
+        <test-method status="PASS" signature="TC_001_getAccessToken()[pri:1, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="TC_001_getAccessToken" duration-ms="3140" started-at="2021-03-10T07:32:59Z" finished-at="2021-03-10T07:33:02Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_001_getAccessToken -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestResult)[pri:0, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="teardown" is-config="true" duration-ms="278" started-at="2021-03-10T07:33:02Z" finished-at="2021-03-10T07:33:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_001_getAccessToken status=SUCCESS method=CreateOrderFlow.TC_001_getAccessToken()[pri:1, instance:ecomm.apitests.CreateOrderFlow@598067a5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method status="PASS" signature="TC_002_getProductDetails()[pri:2, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="TC_002_getProductDetails" duration-ms="395" started-at="2021-03-10T07:33:02Z" finished-at="2021-03-10T07:33:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_002_getProductDetails -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestResult)[pri:0, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="teardown" is-config="true" duration-ms="43" started-at="2021-03-10T07:33:03Z" finished-at="2021-03-10T07:33:03Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_002_getProductDetails status=SUCCESS method=CreateOrderFlow.TC_002_getProductDetails()[pri:2, instance:ecomm.apitests.CreateOrderFlow@598067a5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method status="PASS" signature="TC_003_CreateCart()[pri:3, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="TC_003_CreateCart" duration-ms="750" started-at="2021-03-10T07:33:03Z" finished-at="2021-03-10T07:33:04Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_003_CreateCart -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestResult)[pri:0, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="teardown" is-config="true" duration-ms="40" started-at="2021-03-10T07:33:04Z" finished-at="2021-03-10T07:33:04Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_003_CreateCart status=SUCCESS method=CreateOrderFlow.TC_003_CreateCart()[pri:3, instance:ecomm.apitests.CreateOrderFlow@598067a5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method status="PASS" signature="TC_004_AddLineItemToCart()[pri:4, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="TC_004_AddLineItemToCart" duration-ms="429" started-at="2021-03-10T07:33:04Z" finished-at="2021-03-10T07:33:04Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_004_AddLineItemToCart -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestResult)[pri:0, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="teardown" is-config="true" duration-ms="33" started-at="2021-03-10T07:33:04Z" finished-at="2021-03-10T07:33:04Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_004_AddLineItemToCart status=SUCCESS method=CreateOrderFlow.TC_004_AddLineItemToCart()[pri:4, instance:ecomm.apitests.CreateOrderFlow@598067a5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method status="PASS" signature="TC_005_AddDiscountToCart()[pri:5, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="TC_005_AddDiscountToCart" duration-ms="438" started-at="2021-03-10T07:33:04Z" finished-at="2021-03-10T07:33:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_005_AddDiscountToCart -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestResult)[pri:0, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="teardown" is-config="true" duration-ms="42" started-at="2021-03-10T07:33:05Z" finished-at="2021-03-10T07:33:05Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_005_AddDiscountToCart status=SUCCESS method=CreateOrderFlow.TC_005_AddDiscountToCart()[pri:5, instance:ecomm.apitests.CreateOrderFlow@598067a5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method status="PASS" signature="TC_006_SetShippingAddress()[pri:6, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="TC_006_SetShippingAddress" duration-ms="318" started-at="2021-03-10T07:33:05Z" finished-at="2021-03-10T07:33:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_006_SetShippingAddress -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestResult)[pri:0, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="teardown" is-config="true" duration-ms="68" started-at="2021-03-10T07:33:05Z" finished-at="2021-03-10T07:33:05Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_006_SetShippingAddress status=SUCCESS method=CreateOrderFlow.TC_006_SetShippingAddress()[pri:6, instance:ecomm.apitests.CreateOrderFlow@598067a5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method status="PASS" signature="TC_007_SetBillingAddress()[pri:7, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="TC_007_SetBillingAddress" duration-ms="331" started-at="2021-03-10T07:33:05Z" finished-at="2021-03-10T07:33:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_007_SetBillingAddress -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestResult)[pri:0, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="teardown" is-config="true" duration-ms="65" started-at="2021-03-10T07:33:05Z" finished-at="2021-03-10T07:33:05Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_007_SetBillingAddress status=SUCCESS method=CreateOrderFlow.TC_007_SetBillingAddress()[pri:7, instance:ecomm.apitests.CreateOrderFlow@598067a5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method status="PASS" signature="TC_008_SetShippingMethod()[pri:8, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="TC_008_SetShippingMethod" duration-ms="314" started-at="2021-03-10T07:33:05Z" finished-at="2021-03-10T07:33:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_008_SetShippingMethod -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestResult)[pri:0, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="teardown" is-config="true" duration-ms="46" started-at="2021-03-10T07:33:06Z" finished-at="2021-03-10T07:33:06Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_008_SetShippingMethod status=SUCCESS method=CreateOrderFlow.TC_008_SetShippingMethod()[pri:8, instance:ecomm.apitests.CreateOrderFlow@598067a5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method status="PASS" signature="TC_009_CreateAnOrder()[pri:9, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="TC_009_CreateAnOrder" duration-ms="439" started-at="2021-03-10T07:33:06Z" finished-at="2021-03-10T07:33:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_009_CreateAnOrder -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestResult)[pri:0, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="teardown" is-config="true" duration-ms="45" started-at="2021-03-10T07:33:06Z" finished-at="2021-03-10T07:33:06Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_009_CreateAnOrder status=SUCCESS method=CreateOrderFlow.TC_009_CreateAnOrder()[pri:9, instance:ecomm.apitests.CreateOrderFlow@598067a5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+        <test-method status="PASS" signature="TC_010_GetAnOrder()[pri:10, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="TC_010_GetAnOrder" duration-ms="284" started-at="2021-03-10T07:33:06Z" finished-at="2021-03-10T07:33:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_010_GetAnOrder -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestResult)[pri:0, instance:ecomm.apitests.CreateOrderFlow@598067a5]" name="teardown" is-config="true" duration-ms="31" started-at="2021-03-10T07:33:07Z" finished-at="2021-03-10T07:33:07Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_010_GetAnOrder status=SUCCESS method=CreateOrderFlow.TC_010_GetAnOrder()[pri:10, instance:ecomm.apitests.CreateOrderFlow@598067a5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- ecomm.apitests.CreateOrderFlow -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
