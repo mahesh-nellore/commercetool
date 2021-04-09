@@ -21,7 +21,7 @@ public class OrderGeneration extends BaseTest{
 		RestAssured.baseURI = baseUri;
 		Response response = RestAssured.given().headers("Authorization", "Bearer " + token)
 				.headers("Content-Type", "application/json").pathParams(pathParamValues).body(obj).post(path);
-		int statusCode = response.getStatusCode();		
+		int statusCode = response.getStatusCode();	
 		if (201 == statusCode) {
 			logger.log(Status.PASS, " Create Order API call is success and the status code is :" + statusCode);
 			version = String.valueOf(response.jsonPath().getString("version"));
@@ -31,6 +31,8 @@ public class OrderGeneration extends BaseTest{
 
 		} else {
 			logger.log(Status.FAIL, "Create Order API call is failed");
+			logger.log(Status.INFO,"Status Code: "+ statusCode);
+			logger.log(Status.INFO,"Response : "+ response.getBody().asString());
 		}
 		return new String[] {version, order_id};
 
@@ -48,6 +50,8 @@ public class OrderGeneration extends BaseTest{
 			logger.log(Status.INFO, "Order Number is:" + orderNumber);
 		} else {
 			logger.log(Status.FAIL, "Get Order API call is failed");
+			logger.log(Status.INFO,"Status Code: "+ statusCode);
+			logger.log(Status.INFO,"Response : "+ response.getBody().asString());
 		}return orderNumber;
 	}
 

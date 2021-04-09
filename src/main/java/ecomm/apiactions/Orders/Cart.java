@@ -27,6 +27,8 @@ public class Cart extends BaseTest {
 
 		} else {
 			logger.log(Status.FAIL, "Create cart API call is failed");
+			logger.log(Status.INFO,"Status Code: "+ statusCode);
+			logger.log(Status.INFO,"Response : "+ response.getBody().asString());
 		}
 		return new String[] { cartId, version };
 
@@ -49,6 +51,8 @@ public class Cart extends BaseTest {
 
 		} else {
 			logger.log(Status.FAIL, "Add line item API is failed");
+			logger.log(Status.INFO,"Status Code: "+ statusCode);
+			logger.log(Status.INFO,"Response : "+ response.getBody().asString());
 		}
 		return version;
 	}
@@ -79,6 +83,8 @@ public class Cart extends BaseTest {
 
 		} else {
 			logger.log(Status.FAIL, "Add discount to the cart API is failed");
+			logger.log(Status.INFO,"Status Code: "+ statusCode);
+			logger.log(Status.INFO,"Response : "+ response.getBody().asString());
 		}
 		return version;
 

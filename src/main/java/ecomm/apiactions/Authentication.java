@@ -29,6 +29,8 @@ public class Authentication extends BaseTest{
 			
 		}else {
 			logger.log(Status.FAIL, "Authentication API call is Success and the status code is: "+statusCode);
+			logger.log(Status.INFO,"Status Code: "+ statusCode);
+			logger.log(Status.INFO,"Response : "+ res.getBody().asString());
 		}return new String[] {token, project_key};
 	}
 

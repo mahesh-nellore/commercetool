@@ -10,13 +10,17 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.gherkin.model.Given;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import ecomm.apiactions.Authentication;
 import ecomm.apiactions.Orders.Cart;
+import ecomm.apiactions.Orders.CreatePayment;
 import ecomm.apiactions.Orders.OrderGeneration;
 import ecomm.apiactions.Orders.Product;
 import ecomm.apiactions.Orders.SetAddress;
 import ecomm.apiactions.Orders.SetMethod_Shipping;
+import io.restassured.response.Response;
+import static io.restassured.RestAssured.given;
 
 
 public class BaseTest {
@@ -30,6 +34,7 @@ public class BaseTest {
 	public static SetAddress address = null;
 	public static SetMethod_Shipping shipMethod = null;
 	public static OrderGeneration ordgen = null;
+	public static CreatePayment createpaymentmethod = null;
 	@BeforeSuite
 	public static void initBaseConfig() {
 		ExtentHtmlReporter extreporter = new ExtentHtmlReporter(
@@ -51,6 +56,7 @@ public class BaseTest {
 		address = new SetAddress();
 		shipMethod = new SetMethod_Shipping();
 		ordgen = new OrderGeneration();
+		createpaymentmethod = new CreatePayment();
 	}
 
 	@AfterMethod
@@ -60,6 +66,11 @@ public class BaseTest {
 			logger.fail("Test Case Failed is: " + result.getTestName());
 		}
 		reporter.flush();
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(System.getenv());
+		
 	}
 
 }

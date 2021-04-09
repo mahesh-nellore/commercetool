@@ -14,7 +14,21 @@ import ecomm.apirequestpayloads.AddLineItem.Action;
 import ecomm.apirequestpayloads.AddLineItem.AddLineItem;
 import ecomm.apirequestpayloads.AddLineItem.DistributionChannel;
 import ecomm.apirequestpayloads.AddLineItem.SupplyChannel;
+import ecomm.apirequestpayloads.AddPaymentToCart.AddPaymentToCartAction;
+import ecomm.apirequestpayloads.AddPaymentToCart.AddpaymentToCart;
+import ecomm.apirequestpayloads.AddPaymentToCart.Payment;
 import ecomm.apirequestpayloads.CreateOrder.CreateOrder;
+import ecomm.apirequestpayloads.CreatePayment.AmountPlanned;
+import ecomm.apirequestpayloads.CreatePayment.CreatePayment;
+import ecomm.apirequestpayloads.CreatePayment.Custom;
+import ecomm.apirequestpayloads.CreatePayment.Fields;
+import ecomm.apirequestpayloads.CreatePayment.PaymentMethodInfo;
+import ecomm.apirequestpayloads.CreatePayment.Type;
+import ecomm.apirequestpayloads.SetShippingMethodTaxAmount.ExternalTaxAmount;
+import ecomm.apirequestpayloads.SetShippingMethodTaxAmount.SetShippingMethodTaxAmountAction;
+import ecomm.apirequestpayloads.SetShippingMethodTaxAmount.ShippingMethodTaxAmount;
+import ecomm.apirequestpayloads.SetShippingMethodTaxAmount.TaxRate;
+import ecomm.apirequestpayloads.SetShippingMethodTaxAmount.TotalGross;
 import ecomm.apirequestpayloads.ShippingAddress.Addr_Action;
 import ecomm.apirequestpayloads.ShippingAddress.Address;
 import ecomm.apirequestpayloads.ShippingAddress.ShippingAddress;
@@ -28,14 +42,16 @@ public class CreateOrderFlow extends BaseTest {
 	public static String token = "";
 	public static String project_key = "";
 	public static String cart_id = "";
-	public static String product_id = "eba6b40f-f7a4-4005-9db4-916a17b4d3a1";
+	public static String product_id = "";
 	public static String variant_id = "1";
 	public static int quantity = 1;
-	public static String supplyChannel_id = "dcf33f87-7f80-42a8-9bfd-b5c586db386c";
-	public static String distributionChannel_id = "1426e64e-d6e2-4e05-8417-96f58d8c7657";
+	public static String supplyChannel_id = "";
+	public static String distributionChannel_id = "";
 	public static String discount_code = "GET10%DISCOUNT";
 	public static String order_id = "";
 	public static String orderNumber = "";
+	public static int cartTotal = 0;
+	public static String paymentId = "";
 	String baseUri;
 	String version = "";
 	/*
@@ -91,6 +107,7 @@ public class CreateOrderFlow extends BaseTest {
 		String path = apiprop.getProperty("createCart");
 		CreateCart createcart = new CreateCart();
 		createcart.setCurrency("USD");
+		createcart.setTaxMode("ExternalAmount");
 		String values[] = cart.createCart(baseUri, path, project_key, token, createcart);
 		cart_id = values[0];
 		version = values[1];
@@ -161,7 +178,9 @@ public class CreateOrderFlow extends BaseTest {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("project-key", project_key);
 		map.put("cart-id", cart_id);
-		version = address.setAddress(baseUri, path, map, token, shippingAddr);		
+		String values[] = address.setAddress(baseUri, path, map, token, shippingAddr);
+		version = values[0];
+		cartTotal = Integer.parseInt(values[1]);
 		Assert.assertTrue(version != "" || version != null);
 		logger.log(Status.PASS,
 				"Set Shipping Address API call is Success and successfully retrived the neccesary info from the response");
@@ -185,7 +204,8 @@ public class CreateOrderFlow extends BaseTest {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("project-key", project_key);
 		map.put("cart-id", cart_id);
-		version = address.setAddress(baseUri, path, map, token, shippingAddr);		
+		String values[] = address.setAddress(baseUri, path, map, token, shippingAddr);
+		version = values[0];
 		Assert.assertTrue(version != "" || version != null);
 		logger.log(Status.PASS,
 				"Set Billing Address API call is Success and successfully retrived the neccesary info from the response");
@@ -212,7 +232,72 @@ public class CreateOrderFlow extends BaseTest {
 	}
 	
 	@Test(priority = 9)
-	public void TC_009_CreateAnOrder() {
+	public void TC_009_SetShippingMethodTaxAmount() {
+		//System.out.println("--SetShippingMethodTaxAmount--(Cart Total):"+cartTotal);
+		logger = reporter.createTest("Set ShippingMethod TaxAmount");
+		String path = apiprop.getProperty("addLineItemOrDiscount");
+		TotalGross totalgross = new TotalGross();
+		totalgross.setCentAmount(cartTotal);
+		TaxRate taxrate = new TaxRate();
+		ExternalTaxAmount externaltaxamount = new ExternalTaxAmount();
+		externaltaxamount.setTaxRate(taxrate);
+		externaltaxamount.setTotalGross(totalgross);
+		SetShippingMethodTaxAmountAction action = new SetShippingMethodTaxAmountAction();
+		action.setExternalTaxAmount(externaltaxamount);		
+		ShippingMethodTaxAmount taxamount = new ShippingMethodTaxAmount();		
+		taxamount.setVersion(Integer.parseInt(version));		
+		taxamount.setActions(Arrays.asList(action));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("project-key", project_key);
+		map.put("cart-id", cart_id);
+		version = shipMethod.setShippingMethodTaxAmount(baseUri, path, map, token, taxamount);
+		System.out.println("Last version = " + version);
+	}
+	
+	@Test(priority = 10)
+	public void TC_010_CreatePayment() {
+		logger = reporter.createTest("Create Payment");
+		String path = apiprop.getProperty("createpayment");
+		Map<String, String> map = new HashMap<String, String>();
+        map.put("project-key", "breville-trial");
+        Type type = new Type();
+        Fields fields = new Fields(cartTotal);
+        fields.setCartIdReference(cart_id);
+        Custom custom = new Custom();
+        custom.setType(type);
+        custom.setFields(fields);
+        AmountPlanned amountPlanned = new AmountPlanned();
+        amountPlanned.setCentAmount(cartTotal);
+        PaymentMethodInfo paymentMethodInfo = new PaymentMethodInfo();
+        CreatePayment crt_payment=new CreatePayment();
+        crt_payment.setAmountPlanned(amountPlanned);
+        crt_payment.setPaymentMethodInfo(paymentMethodInfo);
+        crt_payment.setCustom(custom);
+        paymentId = createpaymentmethod.createPaymentMethod(baseUri, path, map, token, crt_payment);
+        System.out.println("The Payment Id: "+paymentId);       
+       
+	}
+	
+	@Test(priority = 11)
+	public void TC_011_addCarttopayment() {
+		logger = reporter.createTest("Add cart payment to cart");
+		String path = apiprop.getProperty("addcartpayment");
+		Map<String, String> map = new HashMap<String, String>();		
+		AddPaymentToCartAction action = new AddPaymentToCartAction();
+		 Payment payment = new Payment();
+		payment.setId(paymentId);		
+		AddpaymentToCart add_paymenttocart = new AddpaymentToCart();
+		add_paymenttocart.setVersion(Integer.parseInt(version));
+		action.setPayment(payment);
+	    add_paymenttocart.setActions(Arrays.asList(action));
+	    map.put("project-key", project_key);
+		map.put("cart-id", cart_id);	    
+		version = createpaymentmethod.addPaymentToCart(baseUri, path, map, token, add_paymenttocart);	    
+	    System.out.println("add cart payment version"+version);
+	}
+	
+	@Test(priority = 12)
+	public void TC_012_CreateAnOrder() {
 		logger = reporter.createTest("Create An Order");
 		String path = apiprop.getProperty("createOrder");
 		orderNumber = GenericUtility.getRandomNumberString();
@@ -229,8 +314,8 @@ public class CreateOrderFlow extends BaseTest {
 		logger.log(Status.PASS,
 				"Create An Order API call is Success and successfully retrived the neccesary info from the response");
 	}
-	@Test(priority = 10)
-	public void TC_010_GetAnOrder() {
+	@Test(priority = 13)
+	public void TC_013_GetAnOrder() {
 		logger = reporter.createTest("Get Created Order");
 		String path = apiprop.getProperty("getOrderId");
 		Map<String, String> map = new HashMap<String, String>();

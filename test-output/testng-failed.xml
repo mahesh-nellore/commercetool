@@ -5,9 +5,9 @@
     <classes>
       <class name="ecomm.apitests.CreateOrderFlow">
         <methods>
+          <include name="TC_013_GetAnOrder"/>
           <include name="initBaseConfig"/>
           <include name="teardown"/>
-          <include name="TC_010_GetAnOrder"/>
         </methods>
       </class> <!-- ecomm.apitests.CreateOrderFlow -->
     </classes>
