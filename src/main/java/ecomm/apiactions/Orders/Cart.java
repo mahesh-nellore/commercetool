@@ -56,13 +56,40 @@ public class Cart extends BaseTest {
 		}
 		return version;
 	}
+	
+	/*
+	 * Method will return the cart items & Details
+	 */
+	public String[] getCartById(String baseUri, String path, Map<String, String> pathParamValues, String token) {
+		String version = "";
+		String amount = "";
+		RestAssured.baseURI = baseUri;
+		Response response = RestAssured.given().headers("Authorization", "Bearer " + token)
+				.headers("Content-Type", "application/json").pathParams(pathParamValues).get(path);
+		int statusCode = response.getStatusCode();
+		if (200 == statusCode) {
+			logger.log(Status.PASS, " Add line item API is success and the status code is :" + statusCode);
+			version = String.valueOf(response.jsonPath().getString("version"));
+			logger.log(Status.INFO, "Add line item to cart Version: " + version);
+			amount = String.valueOf(response.jsonPath().getString("totalPrice.centAmount"));
+			
+
+		} else {
+			logger.log(Status.FAIL, "Add line item API is failed");
+			logger.log(Status.INFO,"Status Code: "+ statusCode);
+			logger.log(Status.INFO,"Response : "+ response.getBody().asString());
+		}
+		return new String[] {version, amount};
+	}
 
 	/*
 	 * Method will add a discount to the Cart Returns the Version
 	 */
-	public String addDiscountToTheCart(String baseUri, String path, Map<String, String> pathParamValues, String token,
+	public String[] addDiscountToTheCart(String baseUri, String path, Map<String, String> pathParamValues, String token,
 			Object obj) {
 		String version = "";
+		String price = "";
+		String discountedPrice = "";
 		RestAssured.baseURI = baseUri;
 		Response response = RestAssured.given().headers("Authorization", "Bearer " + token)
 				.headers("Content-Type", "application/json").pathParams(pathParamValues).body(obj).post(path);
@@ -71,8 +98,8 @@ public class Cart extends BaseTest {
 			logger.log(Status.PASS, " Add discount to the cart API is success and the status code is :" + statusCode);
 			version = String.valueOf(response.jsonPath().getString("version"));
 			logger.log(Status.INFO, "Add discount to the cart Version: " + version);
-			String price = response.jsonPath().getString("lineItems[0].price.value.centAmount");
-			String discountedPrice = response.jsonPath().getString("lineItems[0].discountedPrice.value.centAmount");
+			price = response.jsonPath().getString("lineItems[0].price.value.centAmount");
+			discountedPrice = response.jsonPath().getString("lineItems[0].discountedPrice.value.centAmount");
 			logger.log(Status.INFO, "Discounted Amount: " + discountedPrice);
 			logger.log(Status.INFO, " Price Amount: " + price);
 			/*
@@ -86,7 +113,7 @@ public class Cart extends BaseTest {
 			logger.log(Status.INFO,"Status Code: "+ statusCode);
 			logger.log(Status.INFO,"Response : "+ response.getBody().asString());
 		}
-		return version;
+		return new String[] {version, price, discountedPrice};
 
 	}
 

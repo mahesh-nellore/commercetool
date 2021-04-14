@@ -35,6 +35,7 @@ import ecomm.apirequestpayloads.ShippingAddress.ShippingAddress;
 import ecomm.apirequestpayloads.ShippingMethod.SetShippingMethod;
 import ecomm.apirequestpayloads.ShippingMethod.ShippingMethod;
 import ecomm.apirequestpayloads.ShippingMethod.ShippingMethodAction;
+import ecomm.generic.ExcelUtility;
 import ecomm.generic.GenericUtility;
 
 public class CreateOrderFlow extends BaseTest {
@@ -47,7 +48,7 @@ public class CreateOrderFlow extends BaseTest {
 	public static int quantity = 1;
 	public static String supplyChannel_id = "";
 	public static String distributionChannel_id = "";
-	public static String discount_code = "GET10%DISCOUNT";
+	public static String discount_code = "";
 	public static String order_id = "";
 	public static String orderNumber = "";
 	public static int cartTotal = 0;
@@ -89,7 +90,8 @@ public class CreateOrderFlow extends BaseTest {
 		logger = reporter.createTest("Get Product Details API");
 		baseUri = apiprop.getProperty("baseUri");
 		String getProductIdPath = apiprop.getProperty("getProductId");
-		String productId = apiprop.getProperty("productId");
+		//String productId = apiprop.getProperty("productId");
+		String productId = ExcelUtility.getCellValue(excelFilePath, 0, 1, 0);
 		productDetails = product.getProductDetails(baseUri, getProductIdPath, token, project_key, productId);
 		version = productDetails.get("version");
 		product_id = productDetails.get("productId");
@@ -139,13 +141,33 @@ public class CreateOrderFlow extends BaseTest {
 		version = cart.addLineItemToCart(baseUri, path, map, token, addlineitem);
 		Assert.assertTrue(version != "" || version != null);
 		logger.log(Status.PASS,
-				"Add line Item to the Cart API call is Success and successfully retrived the neccesary info from the response");
+				"Add line Item to the Cart API call is Success and the version values is: "+version);
 	}
-
+	
 	@Test(priority = 5)
-	public void TC_005_AddDiscountToCart() {
+	public void TC_005_getCartById() {
+		logger = reporter.createTest("Get the Cart by ID");
+		String path = apiprop.getProperty("addLineItemOrDiscount");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("project-key", project_key);
+		map.put("cart-id", cart_id);
+		String [] values = cart.getCartById(baseUri, path, map, token);
+		version = values[0];
+		Assert.assertTrue(version != "" || version != null);
+		logger.log(Status.PASS,
+				"Get Cart API call is Success and successfully retrived the version from the response and the version is: "+version);
+		String total = ExcelUtility.getCellValue(excelFilePath, 0, 1, 1);
+		Assert.assertEquals(values[1].trim(), total);
+		logger.log(Status.PASS, "The Actual cart total  is: "+values[1]+" And the Expected Cart total  is: "+total);
+	}
+	
+	
+
+	@Test(priority = 6)
+	public void TC_006_AddDiscountToCart() {
 		logger = reporter.createTest("Add Dsicount to the cart");
 		String path = apiprop.getProperty("addLineItemOrDiscount");
+		discount_code = ExcelUtility.getCellValue(excelFilePath, 0, 1, 2);
 		AddDiscount adddiscount = new AddDiscount();
 		adddiscount.setVersion(Integer.parseInt(version));
 		Discount discount = new Discount();
@@ -154,14 +176,19 @@ public class CreateOrderFlow extends BaseTest {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("project-key", project_key);
 		map.put("cart-id", cart_id);
-		version = cart.addDiscountToTheCart(baseUri, path, map, token, adddiscount);
-		Assert.assertTrue(version != "" || version != null);
+		String[] values = cart.addDiscountToTheCart(baseUri, path, map, token, adddiscount);
+		version = values[0];
+		Assert.assertTrue(version != "" || version != null);		
 		logger.log(Status.PASS,
-				"Add Discount to the Cart API call is Success and successfully retrived the neccesary info from the response");
+				"Add Discount to the Cart API call is Success and successfully retrived the version from the response and the version is: "+version);
+		String discountAmount = ExcelUtility.getCellValue(excelFilePath, 0, 1, 3);
+		Assert.assertEquals(values[2].trim(), discountAmount);
+		logger.log(Status.PASS, "The Actual cart total after discount is: "+values[2]+" And the Expected Cart total after discount is: "+discountAmount);
+		
 	}
 	
-	@Test(priority = 6)
-	public void TC_006_SetShippingAddress() {
+	@Test(priority = 7)
+	public void TC_007_SetShippingAddress() {
 		logger = reporter.createTest("Set Shipping Address");
 		String path = apiprop.getProperty("addLineItemOrDiscount");
 		Address addr = new Address();
@@ -183,11 +210,21 @@ public class CreateOrderFlow extends BaseTest {
 		cartTotal = Integer.parseInt(values[1]);
 		Assert.assertTrue(version != "" || version != null);
 		logger.log(Status.PASS,
-				"Set Shipping Address API call is Success and successfully retrived the neccesary info from the response");
+				"Set Shipping Address API call is Success and successfully retrived and version is: "+version);
+		String expectedTaxRate = ExcelUtility.getCellValue(excelFilePath, 0, 1, 4).trim();
+		String expectedAmountIncludingTax = ExcelUtility.getCellValue(excelFilePath, 0, 1, 5).trim();
+		String actualTaxRate = values[2].trim();
+		String actualAmountIncludingTax = values[3].trim();
+		Assert.assertEquals(actualTaxRate, expectedTaxRate);
+		logger.log(Status.PASS,
+				"Actual Tax rate is: "+actualTaxRate+" And the Expected Tax Rate is: "+expectedTaxRate);
+		Assert.assertEquals(actualAmountIncludingTax, expectedAmountIncludingTax);
+		logger.log(Status.PASS,
+				"Actual Total Amount including Tax: "+actualAmountIncludingTax+" And the Expected Total Amount including Tax: "+expectedAmountIncludingTax);
 	}
 	
-	@Test(priority = 7)
-	public void TC_007_SetBillingAddress() {
+	@Test(priority = 8)
+	public void TC_008_SetBillingAddress() {
 		logger = reporter.createTest("Set Billing Address");
 		String path = apiprop.getProperty("addLineItemOrDiscount");
 		Address addr = new Address();
@@ -211,8 +248,8 @@ public class CreateOrderFlow extends BaseTest {
 				"Set Billing Address API call is Success and successfully retrived the neccesary info from the response");
 	}
 	
-	@Test(priority = 8)
-	public void TC_008_SetShippingMethod() {
+	@Test(priority = 9)
+	public void TC_009_SetShippingMethod() {
 		logger = reporter.createTest("Set Shipping Method");
 		String path = apiprop.getProperty("addLineItemOrDiscount");
 		SetShippingMethod shipping_method = new SetShippingMethod();
@@ -231,8 +268,8 @@ public class CreateOrderFlow extends BaseTest {
 				"Set Shipping Method API call is Success and successfully retrived the neccesary info from the response");
 	}
 	
-	@Test(priority = 9)
-	public void TC_009_SetShippingMethodTaxAmount() {
+	@Test(priority = 10)
+	public void TC_010_SetShippingMethodTaxAmount() {
 		//System.out.println("--SetShippingMethodTaxAmount--(Cart Total):"+cartTotal);
 		logger = reporter.createTest("Set ShippingMethod TaxAmount");
 		String path = apiprop.getProperty("addLineItemOrDiscount");
@@ -251,11 +288,10 @@ public class CreateOrderFlow extends BaseTest {
 		map.put("project-key", project_key);
 		map.put("cart-id", cart_id);
 		version = shipMethod.setShippingMethodTaxAmount(baseUri, path, map, token, taxamount);
-		System.out.println("Last version = " + version);
 	}
 	
-	@Test(priority = 10)
-	public void TC_010_CreatePayment() {
+	@Test(priority = 11)
+	public void TC_011_CreatePayment() {
 		logger = reporter.createTest("Create Payment");
 		String path = apiprop.getProperty("createpayment");
 		Map<String, String> map = new HashMap<String, String>();
@@ -273,13 +309,12 @@ public class CreateOrderFlow extends BaseTest {
         crt_payment.setAmountPlanned(amountPlanned);
         crt_payment.setPaymentMethodInfo(paymentMethodInfo);
         crt_payment.setCustom(custom);
-        paymentId = createpaymentmethod.createPaymentMethod(baseUri, path, map, token, crt_payment);
-        System.out.println("The Payment Id: "+paymentId);       
+        paymentId = createpaymentmethod.createPaymentMethod(baseUri, path, map, token, crt_payment);     
        
 	}
 	
-	@Test(priority = 11)
-	public void TC_011_addCarttopayment() {
+	@Test(priority = 12)
+	public void TC_012_addCarttopayment() {
 		logger = reporter.createTest("Add cart payment to cart");
 		String path = apiprop.getProperty("addcartpayment");
 		Map<String, String> map = new HashMap<String, String>();		
@@ -293,11 +328,10 @@ public class CreateOrderFlow extends BaseTest {
 	    map.put("project-key", project_key);
 		map.put("cart-id", cart_id);	    
 		version = createpaymentmethod.addPaymentToCart(baseUri, path, map, token, add_paymenttocart);	    
-	    System.out.println("add cart payment version"+version);
 	}
 	
-	@Test(priority = 12)
-	public void TC_012_CreateAnOrder() {
+	@Test(priority = 13)
+	public void TC_013_CreateAnOrder() {
 		logger = reporter.createTest("Create An Order");
 		String path = apiprop.getProperty("createOrder");
 		orderNumber = GenericUtility.getRandomNumberString();
@@ -314,8 +348,8 @@ public class CreateOrderFlow extends BaseTest {
 		logger.log(Status.PASS,
 				"Create An Order API call is Success and successfully retrived the neccesary info from the response");
 	}
-	@Test(priority = 13)
-	public void TC_013_GetAnOrder() {
+	@Test(priority = 14)
+	public void TC_014_GetAnOrder() {
 		logger = reporter.createTest("Get Created Order");
 		String path = apiprop.getProperty("getOrderId");
 		Map<String, String> map = new HashMap<String, String>();

@@ -8,11 +8,10 @@ import ecomm.apibase.BaseTest;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-public class OrderGeneration extends BaseTest{
-	
+public class OrderGeneration extends BaseTest {
+
 	/*
-	 * Method will set the shipping Method
-	 * Return the version
+	 * Method will set the shipping Method Return the version
 	 */
 	public String[] orderGeneration(String baseUri, String path, Map<String, String> pathParamValues, String token,
 			Object obj) {
@@ -21,7 +20,7 @@ public class OrderGeneration extends BaseTest{
 		RestAssured.baseURI = baseUri;
 		Response response = RestAssured.given().headers("Authorization", "Bearer " + token)
 				.headers("Content-Type", "application/json").pathParams(pathParamValues).body(obj).post(path);
-		int statusCode = response.getStatusCode();	
+		int statusCode = response.getStatusCode();
 		if (201 == statusCode) {
 			logger.log(Status.PASS, " Create Order API call is success and the status code is :" + statusCode);
 			version = String.valueOf(response.jsonPath().getString("version"));
@@ -31,13 +30,13 @@ public class OrderGeneration extends BaseTest{
 
 		} else {
 			logger.log(Status.FAIL, "Create Order API call is failed");
-			logger.log(Status.INFO,"Status Code: "+ statusCode);
-			logger.log(Status.INFO,"Response : "+ response.getBody().asString());
+			logger.log(Status.INFO, "Status Code: " + statusCode);
+			logger.log(Status.INFO, "Response : " + response.getBody().asString());
 		}
-		return new String[] {version, order_id};
+		return new String[] { version, order_id };
 
 	}
-	
+
 	public String getOrderNumber(String baseUri, String path, Map<String, String> pathParamValues, String token) {
 		String orderNumber = "";
 		RestAssured.baseURI = baseUri;
@@ -50,9 +49,10 @@ public class OrderGeneration extends BaseTest{
 			logger.log(Status.INFO, "Order Number is:" + orderNumber);
 		} else {
 			logger.log(Status.FAIL, "Get Order API call is failed");
-			logger.log(Status.INFO,"Status Code: "+ statusCode);
-			logger.log(Status.INFO,"Response : "+ response.getBody().asString());
-		}return orderNumber;
+			logger.log(Status.INFO, "Status Code: " + statusCode);
+			logger.log(Status.INFO, "Response : " + response.getBody().asString());
+		}
+		return orderNumber;
 	}
 
 }

@@ -10,7 +10,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.gherkin.model.Given;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import ecomm.apiactions.Authentication;
 import ecomm.apiactions.Orders.Cart;
@@ -19,8 +18,7 @@ import ecomm.apiactions.Orders.OrderGeneration;
 import ecomm.apiactions.Orders.Product;
 import ecomm.apiactions.Orders.SetAddress;
 import ecomm.apiactions.Orders.SetMethod_Shipping;
-import io.restassured.response.Response;
-import static io.restassured.RestAssured.given;
+
 
 
 public class BaseTest {
@@ -35,6 +33,7 @@ public class BaseTest {
 	public static SetMethod_Shipping shipMethod = null;
 	public static OrderGeneration ordgen = null;
 	public static CreatePayment createpaymentmethod = null;
+	public static String excelFilePath = System.getProperty("user.dir")+File.separator+"testdata"+File.separator+"data.xlsx";
 	@BeforeSuite
 	public static void initBaseConfig() {
 		ExtentHtmlReporter extreporter = new ExtentHtmlReporter(
